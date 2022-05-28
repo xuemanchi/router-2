@@ -3,6 +3,8 @@ import App from './App.vue'
 import VueRouter from './vue-router/index'
 import Foo from './components/Foo.vue'
 import Bar from './components/Bar.vue'
+import AComp from './components/children/a.vue'
+import BComp from './components/children/b.vue'
 
 Vue.use(VueRouter)
 
@@ -10,11 +12,21 @@ const router = new VueRouter({
   routes: [
     {
       path: '/foo',
-      components: Foo,
+      component: Foo,
+      children: [
+        {
+          path: 'a',
+          component: AComp,
+        },
+        {
+          path: 'b',
+          component: BComp,
+        },
+      ],
     },
     {
       path: '/bar',
-      components: Bar,
+      component: Bar,
     },
   ],
 })

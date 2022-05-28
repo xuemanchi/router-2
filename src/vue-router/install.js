@@ -12,8 +12,14 @@ function install(Vue) {
     beforeCreate() {
       if (this.$options.router) {
         // root
+        this._routerRoot = this
+        this._router = this.$options.router
+        this._router.init(this)
       }
-      // child
+      else {
+        // child
+        this._routerRoot = (this.$parent && this.$parent._routerRoot) || this
+      }
     },
   })
 
